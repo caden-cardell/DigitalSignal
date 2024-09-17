@@ -51,11 +51,12 @@ print(x4)  # DigitalSignal([0])
 ### Indexing
 The DigitalSignal class supports negative indexing and indexing out of range. Indexing out of range returns '0'.
 ```
-x = DigitalSignal([1, [2], 3, 4])  # represents a signal with sequence notation {1, ➔2, 3, 4}
+x = DigitalSignal([1, [2], 3, 4])  # {1, ➔2, 3, 4}
 
 print(x)  # DigitalSignal(1 [2] 3, 4)
 
-# x[-1] is x[n] when n=-1. Not to be confused with x(-1) which is a time shift operator that is equivalent to x[n-1]!!
+# x[-1] is x[n] when n=-1.
+# NOTE: Not to be confused with x(-1) which is a time shift operator that is equivalent to x[n-1]!!
 print(x[-100])  # 0
 ...
 print(x[-3])    # 0
