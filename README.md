@@ -35,19 +35,17 @@ from DigitalSignal import DigitalSignal
 ```
 
 ### Instantiating
-Bracket notation denotes where the zero index is. If no bracket is given then the first element is defaulted as the zero index.
+Bracket notation denotes where the zero index is. If no bracket is given then the first element is defaulted to as the zero index.
 ```
-x1 = DigitalSignal([0, 1, 2, 3])  
-x2 = DigitalSignal([[0], 1, 2, 3])  
-x3 = DigitalSignal([0, 1, [2], 3])  
-x4 = DigitalSignal([])  
-x5 = DigitalSignal()  
+x1 = DigitalSignal([0, 1, 2, 3])    # represents a signal with sequence notation {➔0, 1, 2, 3}
+x2 = DigitalSignal([[0], 1, 2, 3])  # {➔0, 1, 2, 3}
+x3 = DigitalSignal([0, 1, [2], 3])  # {0, 1, ➔2, 3}
+x4 = DigitalSignal()                # {} or {➔0}
 
 print(x1)  # DigitalSignal([0] 1 2 3)
 print(x2)  # DigitalSignal([0] 1 2 3)
 print(x3)  # DigitalSignal(0 1 [2] 3)
 print(x4)  # DigitalSignal([0])
-print(x5)  # DigitalSignal([0])
 ```
 
 ### Indexing
