@@ -24,7 +24,7 @@ venv\Scripts\activate
 
 ### 4. **Install the package**:
 ```bash
-pip install git+https://github.com/caden-cardell/DigitalSignal.git@latest
+pip install git+https://github.com/caden-cardell/DigitalSignal.git@v0.1.0
 ```
 
 # Examples
