@@ -2,7 +2,8 @@ from setuptools import setup, find_packages
 
 setup(
     name='DigitalSignal',  # Replace with your package name
-    version='0.1',
+    use_scm_version=True,  # Automatically use version from Git tags
+    setup_requires=['setuptools_scm'],
     packages=find_packages(),
     description='A short description of your package',
     long_description=open('README.md').read(),
