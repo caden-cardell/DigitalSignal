@@ -31,7 +31,8 @@ class DigitalSignal:
         neg = self.negative_indices[:]
         neg.reverse()
         pos = self.positive_indices[:]
-        return f"DigitalSignal({' '.join(map(str, neg))} [{pos[0]}] {' '.join(map(str, pos[1:]))})"
+        string_of_list = f"{' '.join(map(str, neg))} [{pos[0]}] {' '.join(map(str, pos[1:]))}"
+        return f"DigitalSignal({string_of_list.strip()})"
 
     def __len__(self):
         """
