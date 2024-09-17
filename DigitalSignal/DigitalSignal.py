@@ -1,7 +1,7 @@
 # TODO:
 # add error and type checking for signal vs correlation? specifically lag based? 
 
-class Signal:
+class DigitalSignal:
     def __init__(self, data=[]):
         """
         Initialize the Signal object.
@@ -82,7 +82,7 @@ class Signal:
         - Signal: A new Signal object with the shifted zero index.
         """
         # Create a clone of the current Signal object
-        clone = Signal()
+        clone = DigitalSignal()
         clone.positive_indices = self.positive_indices[:]
         clone.negative_indices = self.negative_indices[:]
 
@@ -145,7 +145,7 @@ class Signal:
             new_neg[i] = val_self + val_other
 
         # Return a new Signal object with the summed lists
-        clone = Signal()
+        clone = DigitalSignal()
         clone.positive_indices = new_pos
         clone.negative_indices = new_neg
         return clone
@@ -160,7 +160,7 @@ class Signal:
         Returns:
         - Signal: A new Signal object representing the difference between the two signals.
         """
-        if not isinstance(other, Signal):
+        if not isinstance(other, DigitalSignal):
             raise TypeError("Subtraction is only supported between two Signal objects.")
         
         # Multiply the 'other' signal by -1 and add it to the current signal
@@ -184,7 +184,7 @@ class Signal:
         new_neg = [value * scalar for value in self.negative_indices]
 
         # Return a new Signal object with the scaled lists
-        clone = Signal()
+        clone = DigitalSignal()
         clone.positive_indices = new_pos
         clone.negative_indices = new_neg
         return clone
@@ -214,7 +214,7 @@ class Signal:
     
     def __matmul__(self, other):
 
-        if not isinstance(other, Signal):
+        if not isinstance(other, DigitalSignal):
             raise TypeError("Matrix multiplication is only supported between two Signal objects.")
 
         # Determine the maximum lag value
@@ -252,7 +252,7 @@ class Signal:
         Returns:
         - Signal: A new Signal object with the order of elements inverted.
         """
-        inverse = Signal()
+        inverse = DigitalSignal()
         inverse.positive_indices = self.negative_indices[:]
         inverse.positive_indices.insert(0, self.positive_indices[0])
         inverse.negative_indices = self.positive_indices[1:]
@@ -268,7 +268,7 @@ class Signal:
         if not isinstance(amount, int):
             raise TypeError("Padding only supports integers.")
         
-        clone = Signal()
+        clone = DigitalSignal()
         clone.positive_indices = self.positive_indices[:]
         clone.negative_indices = self.negative_indices[:]
 
