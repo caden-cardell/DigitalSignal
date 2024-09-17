@@ -29,10 +29,13 @@ pip install git+https://github.com/caden-cardell/DigitalSignal.git@v0.1.0
 
 # Examples
 
+### Import
+```python
+from DigitalSignal import DigitalSignal
+```
+
 ### Autocorrelation
 ```python
-import DigitalSignal
-
 x = DigitalSignal([1, 1, 1, -1, 1])  # Barker Code 5
 print(x)  # DigitalSignal([1] 1 1 -1 1)
 # the inner bracket around 1 (i.e. [1]) denotes the zero index
@@ -45,8 +48,6 @@ print(r_xx)  # DigitalSignal(1 0 1 0 [5] 0 1 0 1)
 
 ### Timeshifting
 ```python
-import DigitalSignal
-
 x = DigitalSignal([1, 1, 1, -1, 1])  # Barker Code 5
 print(x)  # DigitalSignal([1] 1 1 -1 1)
 
@@ -56,8 +57,6 @@ print(y)  # DigitalSignal([0] 1 1 1 -1 1)
 
 ### Negation
 ```python
-import DigitalSignal
-
 x = DigitalSignal([1, 1, 1, -1, 1])  # Barker Code 5
 print(x)  # DigitalSignal([1] 1 1 -1 1)
 
@@ -67,8 +66,6 @@ print(y)  # DigitalSignal([-1] -1 -1 1 -1)
 
 ### Scalar multiplication
 ```python
-import DigitalSignal
-
 x = DigitalSignal([1, 1, 1, -1, 1])  # Barker Code 5
 print(x)  # DigitalSignal([1] 1 1 -1 1)
 
@@ -78,8 +75,6 @@ print(y)  # DigitalSignal([2] 2 2 -2 2)
 
 ### Addition about the zero index
 ```python
-import DigitalSignal
-
 x1 = DigitalSignal([-2, -1, [0]]) 
 print(x1)  # DigitalSignal(-2 -1 [0])
 
@@ -91,8 +86,6 @@ print(y)  # DigitalSignal(-2 -1 [0] 1 2)
 
 ### Reverse about zero index
 ```python
-import DigitalSignal
-
 x = DigitalSignal([-2, -1, [0], 1, 2, 3, 4, 5])
 print(x)  # DigitalSignal(-2 -1 [0] 1 2 3 4 5)
 
@@ -102,8 +95,6 @@ print(y)  # DigitalSignal(5 4 3 2 1 [0] -1 -2)
 
 ### Combination
 ```python
-import DigitalSignal
-
 x = Signal([1, 1, -1])  # Barker Code 3
 print(x)  # DigitalSignal([1] 1 -1)
 
@@ -113,8 +104,6 @@ print(y)  # DigitalSignal([2] 2 -2 0 -1 -1 1)
 
 ### Convolution
 ```python
-import DigitalSignal
-
 x = DigitalSignal([0, 1, 2, 3])  
 print(x)  # DigitalSignal([0] 1 2 3)
 
