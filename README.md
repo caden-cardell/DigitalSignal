@@ -34,16 +34,41 @@ pip install git+https://github.com/caden-cardell/DigitalSignal.git@v0.1.0
 from DigitalSignal import DigitalSignal
 ```
 
-### Autocorrelation
-```python
-x = DigitalSignal([1, 1, 1, -1, 1])  # Barker Code 5
-print(x)  # DigitalSignal([1] 1 1 -1 1)
-# the inner bracket around 1 (i.e. [1]) denotes the zero index
+### Instantiating
+Bracket notation denotes where the zero index is. If no bracket is given then the first element is defaulted as the zero index.
+```
+x1 = DigitalSignal([0, 1, 2, 3])  
+x2 = DigitalSignal([[0], 1, 2, 3])  
+x3 = DigitalSignal([0, 1, [2], 3])  
+x4 = DigitalSignal([])  
+x5 = DigitalSignal()  
 
-r_xx = x % x  # the autocorrelation of x
+print(x1)  # DigitalSignal([0] 1 2 3)
+print(x2)  # DigitalSignal([0] 1 2 3)
+print(x3)  # DigitalSignal(0 1 [2] 3)
+print(x4)  # DigitalSignal([0])
+print(x5)  # DigitalSignal([0])
+```
 
-print(r_xx)  # DigitalSignal(1 0 1 0 [5] 0 1 0 1)
-# the inner bracket around 5 (i.e. [5]) denotes the zero index
+### Indexing
+The DigitalSignal class supports negative indexing and indexing out of range. Indexing out of range returns '0'.
+```
+x = DigitalSignal([1, [2], 3, 4])  # represents a signal with sequence notation {1, ➔2, 3, 4}
+
+print(x)  # DigitalSignal(1 [2] 3, 4)
+
+# x[-1] is x[n] when n=-1. Not to be confused with x(-1) which is a time shift operator that is equivalent to x[n-1]!!
+print(x[-100])  # 0
+...
+print(x[-3])    # 0
+print(x[-2])    # 0
+print(x[-1])    # 1
+print(x[0])     # 2
+print(x[1])     # 3
+print(x[2])     # 4
+print(x[3])     # 0
+...
+print(x[100])   # 0
 ```
 
 ### Timeshifting
@@ -113,3 +138,14 @@ print(x)  # DigitalSignal([1] 1)
 y = x @ h  # the convoluation of x with h
 print(y)
 ```
+
+### Autocorrelation
+```python
+x = DigitalSignal([1, 1, 1, -1, 1])  # Barker Code 5
+print(x)  # DigitalSignal([1] 1 1 -1 1)
+
+r_xx = x % x  # the autocorrelation of x
+
+print(r_xx)  # DigitalSignal(1 0 1 0 [5] 0 1 0 1)
+```
+
