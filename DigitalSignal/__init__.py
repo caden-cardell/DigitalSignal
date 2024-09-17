@@ -1,8 +1,4 @@
-from .DigitalSignal import DigitalSignal
+from .digital_signal import DigitalSignal
 
-# Making the module callable
-# __call__ = DigitalSignal
-
-
-def __call__():
-    print("hello world")
+# Make the class directly accessible at the package level
+__all__ = ['DigitalSignal']
