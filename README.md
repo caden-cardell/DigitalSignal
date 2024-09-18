@@ -37,7 +37,8 @@ x = DigitalSignal([1, 1, 1, -1, 1])  # Barker Code 5
 print(x)  # DigitalSignal([1] 1 1 -1 1)
 # the inner bracket around 1 (i.e. [1]) denotes the zero index
 
-r_xx = x % x  # the autocorrelation of x
+r_xx = x % x  # the autocorrelation of x 
+# NOTE: this is lag indexed not n indexed!!
 
 print(r_xx)  # DigitalSignal(1 0 1 0 [5] 0 1 0 1)
 # the inner bracket around 5 (i.e. [5]) denotes the zero index
