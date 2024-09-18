@@ -15,13 +15,7 @@
 
     <!-- PyScript REPL -->
     <p>Try running Python code here:</p>
-    <!-- <py-repl></py-repl> -->
-
-    <script type="py" terminal>
-        import code
-        code.interact()
-    </script>
-        
+    <!-- <py-repl></py-repl> -->      
 
     <!-- Python code to be referenced -->
     <py-config>
@@ -29,5 +23,11 @@
 
     <py-script src="DigitalSignal/digital_signal.py"></py-script>
 
+
+    <script type="py" terminal >
+        __terminal__.resize(40, 6)
+        print("Lorem ipsum dolor sit amet consectetur, adipisicing elit. ")
+    </script>
+    
 </body>
 </html>
