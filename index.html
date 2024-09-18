@@ -17,8 +17,19 @@
     <p>Try running Python code here:</p>
     
     <py-script src="DigitalSignal/digital_signal.py"></py-script>
-    
-    <script type=“py-editor”></script>    
+
+
+    <div id="new-terminal">
+        <script id="python-terminal" type="mpy" terminal="" worker="">
+            import code
+            code.interact()
+        </script>
+        <py-terminal style="display: block;"></py-terminal>
+        <script type="mpy" src="./main.py" async="">
+
+        </script><script-py id="mpy-0"></script-py>
+    </div>
+
 
 </body>
 </html>
