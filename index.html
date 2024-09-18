@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyScript REPL 2</title>
+    <title>PyScript REPL</title>
 
     <!-- PyScript CDN -->
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
@@ -11,18 +11,19 @@
 </head>
 <body>
 
-    <h1>PyScript REPL Example</h1>
+    <h1>PyScript REPL 3</h1>
 
     <!-- PyScript REPL -->
     <p>Try running Python code here:</p>
-    <!-- <py-repl></py-repl> -->      
-
-    <py-script src="DigitalSignal/digital_signal.py"></py-script>
-
+    <py-repl>
+        import code
+        code.interact()
+    </py-repl>      
 
     <py-config>
         packages = ['colorama']
     </py-config>
+    
     <script type="py" terminal>
         from colorama import Fore, Back, Style
         print(Fore.RED + 'some red text')
@@ -31,6 +32,8 @@
         print(Style.RESET_ALL)
         print('back to normal now')
     </script>
+
+    <py-script src="DigitalSignal/digital_signal.py"></py-script>
 
 </body>
 </html>
