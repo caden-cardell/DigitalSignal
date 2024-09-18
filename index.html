@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyScript REPL Example</title>
+
+    <!-- PyScript CDN -->
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+</head>
+<body>
+
+    <h1>PyScript REPL Example</h1>
+
+    <!-- PyScript REPL -->
+    <p>Try running Python code here:</p>
+    <py-repl></py-repl>
+
+    <!-- Python code to be referenced -->
+    <py-config>
+        <!-- packages = ["matplotlib"] -->
+    </py-config>
+
+    <py-script src="DigitalSignal/digital_signal.py"></py-script>
+
+</body>
+</html>
