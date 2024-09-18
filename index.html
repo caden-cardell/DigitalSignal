@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyScript REPL 1</title>
+    <title>PyScript REPL 2</title>
 
     <!-- PyScript CDN -->
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
@@ -17,16 +17,19 @@
     <p>Try running Python code here:</p>
     <!-- <py-repl></py-repl> -->      
 
-    <!-- Python code to be referenced -->
-    <py-config>
-    </py-config>
-
     <py-script src="DigitalSignal/digital_signal.py"></py-script>
 
 
-    <script type="py" terminal >
-        __terminal__.resize(40, 6)
-        print("Lorem ipsum dolor sit amet consectetur, adipisicing elit. ")
+    <py-config>
+        packages = ['colorama']
+    </py-config>
+    <script type="py" terminal>
+        from colorama import Fore, Back, Style
+        print(Fore.RED + 'some red text')
+        print(Back.GREEN + 'and with a green background')
+        print(Style.DIM + 'and in dim text')
+        print(Style.RESET_ALL)
+        print('back to normal now')
     </script>
 
 </body>
