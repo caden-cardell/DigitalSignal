@@ -1,3 +1,6 @@
+# Use DigitalSignal in browser
+https://caden-cardell.github.io/DigitalSignal/
+
 # Installation Guide
 Follow these steps to set up and install the package:
 
