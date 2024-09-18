@@ -15,25 +15,10 @@
 
     <!-- PyScript REPL -->
     <p>Try running Python code here:</p>
-    <py-repl>
-        import code
-        code.interact()
-    </py-repl>      
-
-    <py-config>
-        packages = ['colorama']
-    </py-config>
     
-    <script type="py" terminal>
-        from colorama import Fore, Back, Style
-        print(Fore.RED + 'some red text')
-        print(Back.GREEN + 'and with a green background')
-        print(Style.DIM + 'and in dim text')
-        print(Style.RESET_ALL)
-        print('back to normal now')
-    </script>
-
     <py-script src="DigitalSignal/digital_signal.py"></py-script>
+    
+    <script type=“py-editor”></script>    
 
 </body>
 </html>
