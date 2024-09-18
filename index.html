@@ -15,7 +15,13 @@
 
     <!-- PyScript REPL -->
     <p>Try running Python code here:</p>
-    <py-repl></py-repl>
+    <!-- <py-repl></py-repl> -->
+
+
+    <script type="py" terminal worker>
+        import code
+        code.interact()        
+    </script>
 
     <!-- Python code to be referenced -->
     <py-config>
