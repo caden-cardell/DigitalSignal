@@ -2,7 +2,7 @@
 # add error and type checking for signal vs correlation? specifically lag based? 
 
 class DigitalSignal:
-    def __init__(self, data=[]):
+    def __init__(self, data=[0]):
         """
         Initialize the DigitalSignal with data, identifying the zero index by a list element.
         """
@@ -236,7 +236,7 @@ class DigitalSignal:
         n_range = [i for i in range(-(len_max-1), len_max)]
     
         # Initialize a list for storing cross-correlation results
-        conv = Signal()
+        conv = DigitalSignal()
 
         # Iterate over all possible lags
         for n in n_range:
@@ -262,12 +262,4 @@ class DigitalSignal:
         if not isinstance(other, DigitalSignal):
             raise TypeError("Correlation is only supported between two DigitalSignal objects.")
         return self @ (~other)
-
-
-
-
-
-    
-
-
 
