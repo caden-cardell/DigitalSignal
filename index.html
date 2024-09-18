@@ -17,16 +17,17 @@
     <p>Try running Python code here:</p>
     <!-- <py-repl></py-repl> -->
 
+    <script type="py" terminal>
+        import code
+        code.interact()
+    </script>
+        
+
     <!-- Python code to be referenced -->
     <py-config>
     </py-config>
 
     <py-script src="DigitalSignal/digital_signal.py"></py-script>
-
-    <script type="py-editor">
-        import sys
-        print(sys.version)
-    </script>
 
 </body>
 </html>
