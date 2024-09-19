@@ -38,3 +38,32 @@ await type_it_in(
     'print("Hello, from PyScript!")\r\n'
     '# Your turn...'
 )
+
+
+            #    <script type="mpy" src="digital_signal.py" async></script>
+            #     <div id="new-terminal">
+            #     <script id="python-terminal" type="mpy"  terminal worker>
+
+            #         import code
+            #         from js import fetch
+            
+            #         async def load_file(file_name):
+            #             response = await fetch(file_name)
+            #             content = await response.text()
+            #             return content
+            
+            #         async def main():
+            #             # Load the file contents (digital_signal.py in this case)
+            #             file_name = 'digital_signal.py'
+            #             file_content = await load_file(file_name)
+                        
+            #             # Execute the file content to create a namespace
+            #             local_namespace = {}
+            #             exec(file_content, local_namespace)
+            
+            #             # Pass the local namespace to code.interact
+            #             code.interact(local=local_namespace)
+            
+            #         await main()
+
+            #     </script>
