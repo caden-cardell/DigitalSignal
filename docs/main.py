@@ -11,6 +11,8 @@ import asyncio
 import random
 from pyscript import document
 
+from .digital_signal import DigitalSignal
+
 
 # It's the same API as JS when using the document object!
 python_terminal = document.getElementById("python-terminal")
@@ -35,8 +37,7 @@ async def type_it_in(code):
 
 # Web scale use of advanced AI.
 await type_it_in(
-    'print("Hello, from PyScript!")\r\n'
-    '# Your turn...'
+    print(DigitalSignal())
 )
 
 
