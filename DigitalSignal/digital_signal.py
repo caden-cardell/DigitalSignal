@@ -118,6 +118,9 @@ class DigitalSignal:
                     # No more positive values to shift, just insert zeros
                     clone.negative_indices.insert(0, 0)
         
+        if len(clone.positive_indices) is 0:
+            clone.positive_indices.append(0)
+
         return clone
 
     def __rshift__(self, amount):
