@@ -232,11 +232,9 @@ class DigitalSignal:
             raise TypeError("Convolution is only supported between two DigitalSignal objects.")
 
         # Determine the maximum lag value
-        len_self = len(self.positive_indices) + len(self.negative_indices)
-        len_other = len(other.positive_indices) + len(other.negative_indices)
-        len_max = max(len_self, len_other)
-    
-        n_range = [i for i in range(-(len_max-1), len_max)]
+        neg_n = len(other.negative_indices) + len(self.negative_indices)
+        pos_n = len(self.positive_indices) + len(other.positive_indices)
+        n_range = [i for i in range(-(neg_n), pos_n-1)]
     
         # Initialize a list for storing cross-correlation results
         conv = DigitalSignal()
@@ -265,3 +263,8 @@ class DigitalSignal:
         if not isinstance(other, DigitalSignal):
             raise TypeError("Correlation is only supported between two DigitalSignal objects.")
         return self @ (~other)
+
+x = DigitalSignal([1, 0, 0, 0, [0], 0, 0, 1])
+y = DigitalSignal([-1, 1, [2], 3, 4])
+print(x @ y)
+print(y @ x)
