@@ -168,58 +168,7 @@
                     </figure>
                 </div>
 
-                <!-- begin readme content -->
-                <div class="readme">
-                    <h1 id="pyscript">Say Hello to PyScript 👋</h1>
-
-                    <p><strong>PyScript</strong> is an <a href="https://github.com/pyscript/pyscript">open source</a> platform for <a href="https://python.org" target="_blank">Python</a> in the
-<a href="https://en.wikipedia.org/wiki/Web_browser" target="_blank">browser</a>.</p>
-
-                    <p>PyScript brings together two of the most vibrant technical ecosystems on the
-planet. If <a href="https://en.wikipedia.org/wiki/World_Wide_Web" target="_blank">the web</a> and Python
-had a baby, you'd get PyScript.</p>
-
-                    <p>At the core of PyScript is a <em>philosophy of digital empowerment</em>. The web is
-the world's most ubiquitous computing platform, mature and familiar to billions
-of people. Python is one of the
-<a href="https://spectrum.ieee.org/the-top-programming-languages-2023" target="_blank">world's most popular programming languages</a>.</p>
-                    <p>With PyScript, <em>Python runs anywhere there's a
-                    browser (<u>which is everywhere</u>)</em>.</p>
-
-                    <h2>PyScript is...</h2>
-                    <ul>
-                      <li><strong>Easy</strong>: your apps run in the browser with no complicated installation
-                        required.</li>
-                      <li><strong>Expressive</strong>: create apps with a powerful, popular and easy to learn
-                        language like Python.</li>
-                      <li><strong>Scalable</strong>: no need for expensive infrastructure ~ your code runs in
-                        your user's browser.</li>
-                      <li><strong>Shareable</strong>: applications are just a URL on the web. That's it!</li>
-                      <li><strong>Universal</strong>: your code runs anywhere a browser runs... which is
-                        <em>everywhere</em>!</li>
-                      <li><strong>Secure</strong>: PyScript runs in the world's most battle-tested computing
-                        platform, the browser!</li>
-                      <li><strong>Powerful</strong>: the best of the web and Python, together at last.</li>
-</ul>
-
-                </div>
-                <!-- end readme content -->
-
                 <footer class="site-footer">
-                    <a href="https://github.com/pyscript/pyscript" class="footer-button" target="_blank">
-                        <div class="icon">
-                            <svg width="1024px" height="1024px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon">
-                            <path d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0 1 38.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <span>Source code</span>
-                        </div>
-                    </a>
-
-                    <div class="copyright">
-                        <p>Copyright &copy; 2022-present, PyScript Development Team - Originated at <a href="https://anaconda.com" target="_blank">Anaconda, Inc.</a> in 2022
-                    </div>
                 </footer>
 
             </section>
@@ -300,15 +249,20 @@ of people. Python is one of the
 
         <!-- BEGIN HEAP INTEGRATION -->
 		<script type="text/javascript">
-			window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=document.createElement("script");r.type="text/javascript",r.async=!0,r.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(r,a);for(var n=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],o=0;o<p.length;o++)heap[p[o]]=n(p[o])};
+			window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};
+            var r=document.createElement("script");
+            r.type="text/javascript",r.async=!0,r.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";
+            var a=document.getElementsByTagName("script")[0];
+            a.parentNode.insertBefore(r,a);
+            for(var n=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],o=0;o<p.length;o++)heap[p[o]]=n(p[o])};
 			heap.load("758475466");
 		</script>
 		<!-- END HEAP INTEGRATION -->
         <script>
         // It's a hack.
         try{
-          var sab = new SharedArrayBuffer(4);
-          if(sab===undefined)throw new Error('not supported')
+        //   var sab = new SharedArrayBuffer(4);
+        //   if(sab===undefined)throw new Error('not supported')
         }
         catch(e){
           document.getElementById("new-terminal").style.display = "none";
