@@ -263,8 +263,3 @@ class DigitalSignal:
         if not isinstance(other, DigitalSignal):
             raise TypeError("Correlation is only supported between two DigitalSignal objects.")
         return self @ (~other)
-
-x = DigitalSignal([1, 0, 0, 0, [0], 0, 0, 1])
-y = DigitalSignal([-1, 1, [2], 3, 4])
-print(x @ y)
-print(y @ x)
