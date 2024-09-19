@@ -1,8 +1,9 @@
 # PyScript.net Website
 
 This is the static website hosted at
-[https://pyscript.net](https://pyscript.net). It is the homepage for the open
-source aspects of the wider PyScript project.
+[https://caden-cardell.github.io/DigitalSignal/](https://caden-cardell.github.io/DigitalSignal/).
+It is based on the open source webpage [https://pyscript.net](https://pyscript.net), the homepage for the open
+source aspects of the wider PyScript project. The GitHub repo for the original webpage is [https://github.com/pyscript/pyscript.net](https://github.com/pyscript/pyscript.net). 
 
 ## Developer setup
 

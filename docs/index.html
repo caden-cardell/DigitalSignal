@@ -11,9 +11,6 @@
 		<meta property="og:title" content="Pyscript.net">
 		<meta property="og:type" content="website">
 
-        <link rel="icon" href="/assets/images/favicon.ico">
-		<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
-
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
@@ -39,47 +36,32 @@
 
              <!-- begin header -->
             <header class="site-header">
-
+                <h1 style="text-align: center; font-family: 'Courier New', Courier, monospace;">
+                    DigitalSignal REPL
+                </h1> 
             </header>
             <!-- end header -->
 
             <section class="content">
 
-                <!-- begin terminal window -->
-                <div id="new-terminal">
-                <script type="mpy" src="../DigitalSignal/digital_signal.py"></script>
-                <script id="python-terminal" type="mpy" terminal>
-                import code
-                code.interact()
-                </script>
-                <py-script ></py-script>
-
+                <div style="text-align: left; padding: 10px; font-family: 'Courier New', Courier, monospace; width: fit-content; margin-right: auto;">
+                    <u>Example use:</u>
+                    
+                    <p>>>> DS = DigitalSignal</p>
+                    <p>>>> x1 = DS([-2, -1, [0]])</p>
+                    <p>>>> x2 = DS([[0], 1, 2])</p>
+                    <p>>>> x1 + x2</p>
+                    <p>DigitalSignal(-2 -1 [0] 1 2)</p>
                 </div>
 
-                <div class="old-terminal" id="old-terminal">
-                    <div class="menu">
-                        <div class="window-buttons close"></div>
-                        <div class="window-buttons minimize"></div>
-                        <div class="window-buttons zoom"></div>
-                    </div>
-                    <div class="screen">
-                        <div class="code">
-
-                            <pre id="typewriter">
-                            Wouldn't it be cool...
-                            to run Python...
-                            in your browser?
-                            </pre>
-
-                            <p class="line1">&lt;html&gt;<span class="cursor1">|</span></p>
-                            <p class="line2">&nbsp;&nbsp;...<span class="cursor2">|</span></p>
-                            <p class="line3">&nbsp;&nbsp;&lt;script type="py"&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #aaa;"><span style="color:#FFD580;">print</span>(<span style="color:#BAE67E;">'You can!'</span>)</span><br/>&nbsp;&nbsp;&lt;/script&gt;<span class="cursor3">|</span></p>
-                            <p class="line4">&lt;/html&gt;<span class="cursor4">|</span></p>
-
-                            <p class="line5"><span class="cursor5">|</span></p>
-
-                        </div>
-                    </div>
+                <!-- begin terminal window -->
+                <div id="new-terminal">
+                    <script type="mpy" src="../DigitalSignal/digital_signal.py"></script>
+                    <script id="python-terminal" type="mpy" terminal>
+                    import code
+                    code.interact()
+                    </script>
+                    <py-script ></py-script>
                 </div>
                 <!-- end terminal window -->
 
@@ -157,18 +139,6 @@
             typewriter = setupTypewriter(typewriter);
 
             typewriter.type();
-        </script>
-
-        <script>
-        // It's a hack.
-        try{
-        //   var sab = new SharedArrayBuffer(4);
-        //   if(sab===undefined)throw new Error('not supported')
-        }
-        catch(e){
-          document.getElementById("new-terminal").style.display = "none";
-          document.getElementById("old-terminal").style.display = "block";
-        }
         </script>
 	</body>
 </html>
