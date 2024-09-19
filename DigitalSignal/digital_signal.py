@@ -262,6 +262,3 @@ class DigitalSignal:
         if not isinstance(other, DigitalSignal):
             raise TypeError("Correlation is only supported between two DigitalSignal objects.")
         return self @ (~other)
-
-
-print("This is a test")
