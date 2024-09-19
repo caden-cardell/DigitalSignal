@@ -1,8 +1,0 @@
-.DS_Store
-coverage/
-node_modules/
-cjs/
-!cjs/package.json
-core.js
-esm/worker/xworker.js
-types/
