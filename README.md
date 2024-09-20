@@ -2,6 +2,8 @@
 GitHub Page Site: [https://caden-cardell.github.io/DigitalSignal/](https://caden-cardell.github.io/DigitalSignal/)  
   
 ![DigitalSIgnal Sandbox Default Screen.](./images/digital_signal_sandbox.jpg)
+  
+This site is based on [pyscript.net](https://pyscript.net/), the source code for which can be found [here](https://github.com/pyscript/pyscript.net).
 
 # Installation Guide
 Follow these steps to set up and install the package:
