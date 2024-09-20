@@ -1,4 +1,4 @@
-# Use DigitalSignal in browser
+# Use DigitalSignal Sandbox in browser
 [https://caden-cardell.github.io/DigitalSignal/](https://caden-cardell.github.io/DigitalSignal/)
 
 # Installation Guide
