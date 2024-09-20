@@ -46,21 +46,6 @@
                 <div style="text-align: left; padding: 10px; font-family: 'Courier New', Courier, monospace; width: fit-content; margin-right: auto;">
                     <u>Example use:</u>
                     
-                    <!-- d = DigitalSignal([1])  # Kronecker delta function
-                    print(d)  # DigitalSignal([1])
-                    
-                    x = DigitalSignal([[1], 2, 3])
-                    print(x)  # DigitalSignal([1] 2 3)
-                    
-                    # time-shifted x
-                    print(x(2))  # DigitalSignal(1 2 [3])
-                    
-                    # x convolved with a time-shifted Kronecker delta function
-                    print(x @ d(2))  # DigitalSignal(1 2 [3] 0 0)
-                    
-                    # these are equivalent operations
-                    print(x(2) == x @ d(2))  # True -->
-
 <pre>
 <span>>>> d = DS([1])              <span style="color: #6a9955;"># Kronecker delta function</span></span>
 <span>>>> x = DS([-1, [0], 1, 2])  <span style="color: #6a9955;"># {-1, ➔0, 1, 2}</span></span>
@@ -71,12 +56,7 @@
 <span>>>> x(-1) == x @ d(-1)       <span style="color: #6a9955;"># x[n-1] is x[n]∗δ[n-1]</span></span>
 <span>True</span>
 </pre>
-                        
-                    <!-- <p>>>> DS = DigitalSignal  # this line is automatically run in the background</p>
-                    <p>>>> x1 = DS([-2, -1, [0]])</p>
-                    <p>>>> x2 = DS([[0], 1, 2])</p>
-                    <p>>>> x1 + x2</p>
-                    <p>DigitalSignal(-2 -1 [0] 1 2)</p> -->
+
                 </div>
 
                 <!-- begin terminal window -->
