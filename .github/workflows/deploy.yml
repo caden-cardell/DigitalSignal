@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and Deploy to GitHub Pages
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - site-git-describe  # or whichever branch you're deploying from
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,8 +20,17 @@ jobs:
             document.getElementById('version').textContent = '$GIT_DESCRIBE';
         });" > version.js
 
+    - name: Upload artifact to be deployed
+      uses: actions/upload-pages-artifact@v1
+      with:
+        path: ./  # The directory containing your built site files
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+      uses: actions/deploy-pages@v1
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./  # Your build directory
