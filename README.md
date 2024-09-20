@@ -1,5 +1,7 @@
 # Use DigitalSignal Sandbox in browser
-[https://caden-cardell.github.io/DigitalSignal/](https://caden-cardell.github.io/DigitalSignal/)
+GitHub Page Site: [https://caden-cardell.github.io/DigitalSignal/](https://caden-cardell.github.io/DigitalSignal/)  
+  
+![DigitalSIgnal Sandbox Default Screen.](./images/digital_signal_sandbox.jpg)
 
 # Installation Guide
 Follow these steps to set up and install the package:
