@@ -131,6 +131,24 @@ y = 2*x - x(-4)  # y[n] = 2x[n]-x[n-4]
 print(y)  # DigitalSignal([2] 2 -2 0 -1 -1 1)
 ```
 
+### Reversing about zero index and time-shifting
+The following *DigitalSignal* notation is equivalent to $y[n] = x[-n-2]$.
+```python
+x = DigitalSignal([1, 2, 3])  
+print(x)  # DigitalSignal([1] 2 3)
+
+y = ~x(-2)
+print(x)  # DigitalSignal(3 2 1 0 [0])
+```
+The following *DigitalSignal* notation is equivalent to $y[n] = x[-(n-2)]$.
+```python
+x = DigitalSignal([1, 2, 3])  
+print(x)  # DigitalSignal([1] 2 3)
+
+y = (~x)(-2)
+print(x)  # DigitalSignal([3] 2 1)
+```
+
 ### Convolution
 I'm not actually sure if this is right so double check and let me know.
 ```python
