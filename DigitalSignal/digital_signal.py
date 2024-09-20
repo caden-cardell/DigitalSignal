@@ -263,3 +263,21 @@ class DigitalSignal:
         if not isinstance(other, DigitalSignal):
             raise TypeError("Correlation is only supported between two DigitalSignal objects.")
         return self @ (~other)
+
+    def __eq__(self, other):
+        """
+        Return True both signals are equivalent, return False if not equivalent. 
+        """
+
+        max_neg_len = max(len(self.negative_indices), len(other.negative_indices))
+        max_pos_len = max(len(self.positive_indices), len(other.positive_indices))
+
+        for idx in range(max_neg_len+2):
+            if self[idx] != other[idx]:
+                return False
+                
+        for idx in range(max_pos_len+2):
+            if self[-idx] != other[-idx]:
+                return False
+
+        return True
