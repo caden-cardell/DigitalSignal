@@ -155,3 +155,18 @@ r_xx = x % x  # the autocorrelation of x
 print(r_xx)  # DigitalSignal(1 0 1 0 [5] 0 1 0 1)
 ```
 
+### Equality 
+```python
+x = DigitalSignal([1]) 
+print(x)  # DigitalSignal([1])
+
+y = DigitalSignal([1, 0 , [0]])
+print(y)  # DigitalSignal(1 0 [0])
+
+z = y(-2)
+print(z)  # DigitalSignal([1] 0 0)
+
+print(x == y)  # False
+print(x == z)  # True
+print(x == y(-2))  # True
+```
