@@ -175,16 +175,18 @@ print(r_xx)  # DigitalSignal(1 0 1 0 [5] 0 1 0 1)
 
 ### Equality 
 ```python
-x = DigitalSignal([1]) 
-print(x)  # DigitalSignal([1])
+d = DigitalSignal([1])  # Dirac delta function
+print(d)  # DigitalSignal([1])
 
-y = DigitalSignal([1, 0 , [0]])
-print(y)  # DigitalSignal(1 0 [0])
+x = DigitalSignal([[1], 2, 3])
+print(x)  # DigitalSignal([1] 2 3)
 
-z = y(-2)
-print(z)  # DigitalSignal([1] 0 0)
+# time-shifted x
+print(x(2))  # DigitalSignal(1 2 [3])
 
-print(x == y)  # False
-print(x == z)  # True
-print(x == y(-2))  # True
+# x convolved with a time-shifted Dirac delta function
+print(x @ d(2))  # DigitalSignal(1 2 [3] 0 0)
+
+# these are equivalent operations
+print(x(2) == x @ d(2))  # True
 ```
