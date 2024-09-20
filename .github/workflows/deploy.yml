@@ -15,7 +15,7 @@ jobs:
 
     - name: Run git describe and create version.js
       run: |
-        GIT_DESCRIBE=$(git describe --tags)
+        GIT_DESCRIBE=$(git describe --tags --always)
         echo "document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('version').textContent = '$GIT_DESCRIBE';
         });" > version.js
