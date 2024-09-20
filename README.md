@@ -1,6 +1,6 @@
 # Use DigitalSignal Sandbox in browser
 [https://caden-cardell.github.io/DigitalSignal/](https://caden-cardell.github.io/DigitalSignal/)  
-This site is based off of [pyscript.net](https://pyscript.net/), the source code for which can be found [here](https://github.com/pyscript/pyscript.net)
+This site is based on [pyscript.net](https://pyscript.net/), the source code for which can be found [here](https://github.com/pyscript/pyscript.net).
 
 # Installation Guide
 Follow these steps to set up and install the package:
