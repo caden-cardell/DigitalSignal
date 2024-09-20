@@ -40,11 +40,13 @@ from DigitalSignal import DigitalSignal
 ### Instantiating
 Bracket notation denotes where the zero index is. If no bracket is given then the first element is defaulted to as the zero index.
 ```
+d = DigitalSignal([1])              # Kronecker delta function
 x1 = DigitalSignal([0, 1, 2, 3])    # represents a signal with sequence notation {➔0, 1, 2, 3}
 x2 = DigitalSignal([[0], 1, 2, 3])  # {➔0, 1, 2, 3}
 x3 = DigitalSignal([0, 1, [2], 3])  # {0, 1, ➔2, 3}
 x4 = DigitalSignal()                # {} or {➔0}
 
+print(d)  # DigitalSignal([1])
 print(x1)  # DigitalSignal([0] 1 2 3)
 print(x2)  # DigitalSignal([0] 1 2 3)
 print(x3)  # DigitalSignal(0 1 [2] 3)
@@ -175,7 +177,7 @@ print(r_xx)  # DigitalSignal(1 0 1 0 [5] 0 1 0 1)
 
 ### Equality 
 ```python
-d = DigitalSignal([1])  # Dirac delta function
+d = DigitalSignal([1])  # Kronecker delta function
 print(d)  # DigitalSignal([1])
 
 x = DigitalSignal([[1], 2, 3])
@@ -184,7 +186,7 @@ print(x)  # DigitalSignal([1] 2 3)
 # time-shifted x
 print(x(2))  # DigitalSignal(1 2 [3])
 
-# x convolved with a time-shifted Dirac delta function
+# x convolved with a time-shifted Kronecker delta function
 print(x @ d(2))  # DigitalSignal(1 2 [3] 0 0)
 
 # these are equivalent operations
