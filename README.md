@@ -152,7 +152,6 @@ print(x)  # DigitalSignal([3] 2 1)
 ```
 
 ### Convolution
-I'm not actually sure if this is right so double check and let me know.
 ```python
 x = DS([0, 1, 2, 3])  
 print(x)  # DigitalSignal([0] 1 2 3)
@@ -161,11 +160,11 @@ h = DS([1, 1])
 print(x)  # DigitalSignal([1] 1)
 
 y = x @ h  # y[n] = x[n] ∗ h[n]
-print(y)  # DigitalSignal(0 0 0 [0] 1 3 5)
+print(y)  # DigitalSignal(0 0 0 [0] 1 3 5 3)
 ```
 
 ### Correlation 
-Note: The returned signal is lag indexed not 'n' indexed!!
+$r_xx[n] = x[n] * x[-n]$
 ```python
 x = DS([1, 1, 1, -1, 1])  # Barker Code 5
 print(x)  # DigitalSignal([1] 1 1 -1 1)
