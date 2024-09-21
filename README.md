@@ -80,7 +80,7 @@ print(x[100])   # 0
 ```
 
 ### Time-shifting
-The notation y[n] = x[n-1] is not possible so instead y = x(-1), then y can be indexed y[n].
+The notation $y[n] = x[n-1]$ is not possible so instead y = x(-1), then y can be indexed y[n].
 ```python
 x = DS([1, 1, 1, -1, 1])  # Barker Code 5
 print(x)  # DigitalSignal([1] 1 1 -1 1)
@@ -118,8 +118,8 @@ y = x1 + x2
 print(y)  # DigitalSignal(-2 -1 [0] 1 2)
 ```
 
-### Reverse about zero index
-The notation y[n] = x[-n] is not possible so instead y = ~x, then y can be indexed y[n].
+### Folding
+The notation $y[n] = x[-n]$ is not possible so instead y = ~x, then y can be indexed y[n].
 ```python
 x = DS([-2, -1, [0], 1, 2, 3, 4, 5])
 print(x)  # DigitalSignal(-2 -1 [0] 1 2 3 4 5)
@@ -137,7 +137,7 @@ y = 2*x - x(-4)  # y[n] = 2x[n]-x[n-4]
 print(y)  # DigitalSignal([2] 2 -2 0 -1 -1 1)
 ```
 
-### Reversing about zero index and time-shifting
+### Folding and time-shifting
 The following *DigitalSignal* notation is equivalent to $y[n] = x[-n-2]$.
 ```python
 x = DS([1, 2, 3])  
@@ -168,7 +168,7 @@ print(y)  # DigitalSignal(0 0 0 [0] 1 3 5 3)
 ```
 
 ### Correlation 
-$r_xx[n] = x[n] * x[-n]$
+$r_{xx}[n] = x[n] * x[-n]$. Currently only real-valued signals are supported.
 ```python
 x = DS([1, 1, 1, -1, 1])  # Barker Code 5
 print(x)  # DigitalSignal([1] 1 1 -1 1)
