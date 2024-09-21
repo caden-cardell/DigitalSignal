@@ -1,5 +1,3 @@
-# TODO:
-# add error and type checking for signal vs correlation? specifically lag based? 
 
 class DigitalSignal:
     def __init__(self, data=[0]):
