@@ -292,6 +292,7 @@ class DigitalSignal:
         """
         Elementwise addition to the signal
         """
+        print("WARNING: Elementwise addition/subtraction does not update values outside the range shown when printed.")
         if not isinstance(other, (int, float)):
             raise TypeError("Only floats and ints can be elementwise added to DigitalSignals.")
         
@@ -307,6 +308,7 @@ class DigitalSignal:
         """
         Elementwise subtraction from the signal
         """
+
         if not isinstance(other, (int, float)):
             raise TypeError("Only floats and ints can be elementwise subtracted from DigitalSignals.")
 
