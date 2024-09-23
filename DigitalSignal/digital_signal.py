@@ -382,9 +382,3 @@ class DigitalSignal:
             internal_signal, len(internal_signal)
 
         return internal_signal
-
-x = DigitalSignal([1,2,3,4])
-print(x)
-# x *= 6
-x /= 2
-print(x)
