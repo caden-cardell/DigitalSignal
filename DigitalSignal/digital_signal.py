@@ -313,6 +313,36 @@ class DigitalSignal:
             raise TypeError("Only floats and ints can be elementwise subtracted from DigitalSignals.")
 
         return self.__iadd__(-other)
+    
+    def __imul__(self, other):
+        """
+        Elementwise multipication with the signal
+        """
+        if not isinstance(other, (int, float)):
+            raise TypeError("Only floats and ints can be elementwise multipled with DigitalSignals.")
+        
+        n_len = len(self.negative_indices)
+        p_len = len(self.positive_indices)
+
+        for idx in range(-n_len, p_len):
+            self[idx] = self[idx] * other
+
+        return self
+
+    def __itruediv__(self, other):
+        """
+        Elementwise division of the signal
+        """
+        if not isinstance(other, (int, float)):
+            raise TypeError("Only floats and ints can be elementwise divide DigitalSignals.")
+        
+        n_len = len(self.negative_indices)
+        p_len = len(self.positive_indices)
+
+        for idx in range(-n_len, p_len):
+            self[idx] = self[idx] / other
+
+        return self
 
     def __slice_getitem(self, s):
         """
@@ -323,14 +353,38 @@ class DigitalSignal:
         n_len = len(self.negative_indices)
         p_len = len(self.positive_indices)
 
-        if start == None:
-            start = -n_len
-
-        if stop == None:
-            stop = p_len
-
         if step == None:
             step = 1
 
+        if step >= 0:
+            if start == None:
+                start = -n_len
+            if stop == None:
+                stop = p_len
+        else: 
+            if start == None:
+                start = (p_len-1)
+            if stop == None:
+                stop = -(n_len+1)
+
         return [self[idx] for idx in range(start, stop, step)]
 
+    @staticmethod
+    def shift_reg(shift_size, M):
+        # create a shift register of length 'shift_size' with a leading '1'
+        internal_signal = DigitalSignal([1]) + DigitalSignal()(-(shift_size-1))
+
+        # generate an output of length 'M'
+        while len(internal_signal) < (M):
+            new_value = internal_signal[0] ^ internal_signal[shift_size-1]
+            internal_signal = internal_signal(-1)
+            internal_signal[0] = new_value
+            internal_signal, len(internal_signal)
+
+        return internal_signal
+
+x = DigitalSignal([1,2,3,4])
+print(x)
+# x *= 6
+x /= 2
+print(x)
