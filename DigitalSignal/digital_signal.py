@@ -47,8 +47,13 @@ class DigitalSignal:
         Get the signal value at the specified index.
         """
 
-        if not isinstance(index, int):
-            raise TypeError("Indexing only supports integers.")
+        if not isinstance(index, (int, slice)):
+            raise TypeError("Indexing only supports integers and slices.")
+        
+        # Handle slicing
+        if isinstance(index, slice):
+            start, stop, step = index
+            return [self[idx] for idx in range(start, stop, step)]
 
         if index >= 0:
             # If the index is non-negative, return from positive_indices if in range
