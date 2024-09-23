@@ -52,8 +52,7 @@ class DigitalSignal:
         
         # Handle slicing
         if isinstance(index, slice):
-            start, stop, step = index
-            return [self[idx] for idx in range(start, stop, step)]
+            return self.__slice_getitem(index)
 
         if index >= 0:
             # If the index is non-negative, return from positive_indices if in range
@@ -125,7 +124,7 @@ class DigitalSignal:
                     # No more positive values to shift, just insert zeros
                     clone.negative_indices.insert(0, 0)
         
-        if len(clone.positive_indices) is 0:
+        if len(clone.positive_indices) == 0:
             clone.positive_indices.append(0)
 
         return clone
@@ -288,3 +287,48 @@ class DigitalSignal:
                 return False
 
         return True
+    
+    def __iadd__(self, other):
+        """
+        Elementwise addition to the signal
+        """
+        if not isinstance(other, (int, float)):
+            raise TypeError("Only floats and ints can be elementwise added to DigitalSignals.")
+        
+        n_len = len(self.negative_indices)
+        p_len = len(self.positive_indices)
+
+        for idx in range(-n_len, p_len):
+            self[idx] = self[idx] + other
+
+        return self
+
+    def __isub__(self, other):
+        """
+        Elementwise subtraction from the signal
+        """
+        if not isinstance(other, (int, float)):
+            raise TypeError("Only floats and ints can be elementwise subtracted from DigitalSignals.")
+
+        return self.__iadd__(-other)
+
+    def __slice_getitem(self, s):
+        """
+        Helper function to access the signal in slices
+        """
+        start, stop, step = s.start, s.stop, s.step
+
+        n_len = len(self.negative_indices)
+        p_len = len(self.positive_indices)
+
+        if start == None:
+            start = -n_len
+
+        if stop == None:
+            stop = p_len
+
+        if step == None:
+            step = 1
+
+        return [self[idx] for idx in range(start, stop, step)]
+
