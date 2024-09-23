@@ -11,6 +11,10 @@ class DigitalSignal:
                 zero_index=ind
                 data[ind] = element[0]
 
+        for element in data:
+            if not isinstance(element, (int, float)):
+                raise TypeError("DigitalSignal values can only be scalars.")
+
         if len(data) > 0:
             if zero_index < 0 or zero_index >= len(data):
                 raise ValueError("zero_index must be within the range of the data array.")
@@ -62,7 +66,7 @@ class DigitalSignal:
         if not isinstance(index, int):
             raise TypeError("Indexing only supports integers.")
 
-        if not isinstance(index, (int, float)):
+        if not isinstance(value, (int, float)):
             raise TypeError("DigitalSignal values can only be scalars.")
 
         if index >= 0:
