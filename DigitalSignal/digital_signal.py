@@ -1,4 +1,7 @@
 
+from typing import Any
+
+
 class DigitalSignal:
     def __init__(self, data=[0]):
         """
@@ -369,16 +372,50 @@ class DigitalSignal:
 
         return [self[idx] for idx in range(start, stop, step)]
 
-    @staticmethod
-    def shift_reg(shift_size, M):
-        # create a shift register of length 'shift_size' with a leading '1'
-        internal_signal = DigitalSignal([1]) + DigitalSignal()(-(shift_size-1))
 
-        # generate an output of length 'M'
-        while len(internal_signal) < (M):
-            new_value = internal_signal[0] ^ internal_signal[shift_size-1]
+class ShiftRegister:
+    def __init__(self, length):
+        self.shift_size = length
+
+    def __call__(self, signal_length):
+        """
+        Generate a signal of the given length from this shift register object
+        """
+
+        # create a shift register of length 'shift_size' with a leading '1'
+        internal_signal = DigitalSignal([1]) + DigitalSignal()(-(self.shift_size-1))
+
+        # generate an output of length 'signal_length'
+        while len(internal_signal) < (signal_length):
+            
+            # modulus 2 add
+            new_value = internal_signal[0] ^ internal_signal[self.shift_size-1]
+            
+            # shift signal and append to end
             internal_signal = internal_signal(-1)
             internal_signal[0] = new_value
-            internal_signal, len(internal_signal)
 
-        return internal_signal
+        # convert 0s to -1s
+        internal_signal *= 2
+        internal_signal -= 1  # only the explicit signal will be altered here
+
+        # reverse the explicit signal
+        return DigitalSignal(internal_signal[::-1])
+    
+    @classmethod
+    def test(_):
+        """
+        A method to sanity check that no changes to the DigitalSignal class break anything. This will be moved to a test eventually.
+        """
+
+        # generate shift register output
+        reg = ShiftRegister(4)
+        generated_signal = reg(15)
+        known_signal = DigitalSignal([-1, -1, -1, 1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1])
+
+        if known_signal == generated_signal:
+            print("SUCCESS")
+        else:
+            print("FAIL")
+            print(known_signal, "<-- known_signal")
+            print(generated_signal, "<-- generated_signal")
