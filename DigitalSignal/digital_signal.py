@@ -1,7 +1,3 @@
-
-from typing import Any
-
-
 class DigitalSignal:
     def __init__(self, data=[0]):
         """
