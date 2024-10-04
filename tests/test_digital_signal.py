@@ -68,3 +68,22 @@ def test_signal_mul():
 
     assert signal2[:] == [0, 2, 4]
     assert signal3[:] == [0, 3, 6]
+
+
+def test_signal_neg():
+    signal = DS([0, 1, 2])
+
+    signal2 = -signal
+
+    assert signal2[:] == [0, -1, -2]
+
+
+def test_signal_fold():
+    signal = DS([-1, [0], 1, 2])
+
+    signal2 = ~signal
+
+    assert signal2[1] == -1
+    assert signal2[0] == 0
+    assert signal2[-1] == 1
+    assert signal2[-2] == 2
