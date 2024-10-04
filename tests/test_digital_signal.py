@@ -42,3 +42,11 @@ def test_signal_time_shift():
     signal2 = signal(-2)
 
     assert signal2[4] == 2
+
+
+def test_signal_add():
+    signal1 = DS([-2, -1, [0]])
+    signal2 = DS([[0], 1, 2])
+    signal3 = signal1 + signal2
+
+    assert signal3[:] == [-2, -1, 0, 1, 2]
