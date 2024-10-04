@@ -5,4 +5,4 @@ from DigitalSignal.digital_signal import DigitalSignal  # Assuming you have a cl
 
 def test_signal_dirac():
     signal = DigitalSignal([1])
-    assert signal[:] == [[1]]
+    assert signal[:] == [1]
