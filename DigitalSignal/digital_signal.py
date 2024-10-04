@@ -1,3 +1,6 @@
+import cmath
+
+
 class DigitalSignal:
     def __init__(self, data=[0]):
         """
@@ -11,7 +14,7 @@ class DigitalSignal:
                 data[ind] = element[0]
 
         for element in data:
-            if not isinstance(element, (int, float)):
+            if not isinstance(element, (int, float, complex)):
                 raise TypeError("DigitalSignal values can only be scalars.")
 
         if len(data) > 0:
@@ -55,11 +58,23 @@ class DigitalSignal:
 
         if index >= 0:
             # If the index is non-negative, return from positive_indices if in range
-            return self.positive_indices[index] if index < len(self.positive_indices) else 0
+
+            if index < len(self.positive_indices):
+                value = self.positive_indices[index]
+            else:
+                value = 0
+
+            return value
+        
         else:
             # If the index is negative, return from negative_indices after flipping sign
             index = -index - 1  # Convert negative index to zero-based positive index for negative_indices
-            return self.negative_indices[index] if index < len(self.negative_indices) else 0
+            if index < len(self.negative_indices):
+                value = self.negative_indices[index] 
+            else:
+                value = 0
+
+            return value
 
     def __setitem__(self, index, value):
         """
@@ -69,22 +84,25 @@ class DigitalSignal:
         if not isinstance(index, int):
             raise TypeError("Indexing only supports integers.")
 
-        if not isinstance(value, (int, float)):
+        if not isinstance(value, (int, float, complex)):
             raise TypeError("DigitalSignal values can only be scalars.")
-
+        
         if index >= 0:
             # If the index is non-negative
-            if index >= len(self.positive_indices):
-                # Extend the list with zeros up to the index being set
-                self.positive_indices.extend([0] * (index - len(self.positive_indices) + 1))
-            self.positive_indices[index] = value
+
+            while index > len(self.positive_indices):
+                self.positive_indices.append(self[len(self.positive_indices)])
+
+            self.positive_indices.append(value)
+
         else:
             # If the index is negative
             index = -index - 1
-            if index >= len(self.negative_indices):
-                # Extend the list with zeros up to the index being set
-                self.negative_indices.extend([0] * (index - len(self.negative_indices) + 1))
-            self.negative_indices[index] = value
+
+            while index > len(self.negative_indices):
+                self.negative_indices.append(self[-(len(self.negative_indices)+1)])
+
+            self.negative_indices.append(value)
 
     def __call__(self, amount=0):
         """
@@ -125,24 +143,6 @@ class DigitalSignal:
         
         if len(clone.positive_indices) == 0:
             clone.positive_indices.append(0)
-
-        return clone
-
-    def __rshift__(self, amount):
-        """
-        Return a copy of the signal padded with zeros on the negative side by the given amount for cleaner printing.
-        """
-
-        if not isinstance(amount, int):
-            raise TypeError("Padding only supports integers.")
-        
-        clone = DigitalSignal()
-        clone.positive_indices = self.positive_indices[:]
-        clone.negative_indices = self.negative_indices[:]
-
-        # insert padding
-        for _ in range(amount):
-            clone.negative_indices.append(0)
 
         return clone
 
@@ -189,21 +189,24 @@ class DigitalSignal:
         # Multiply the 'other' signal by -1 and add it to the current signal
         return self.__add__(other * -1)
 
-    def __mul__(self, scalar):
+    def __mul__(self, other):
         """
         Return a new DigitalSignal scaled by the given scalar.
         """
-        if not isinstance(scalar, (int, float)):
-            raise TypeError("The scalar must be an integer or float.")
-
-        # Multiply each element in the positive and negative indices by the scalar
-        new_pos = [value * scalar for value in self.positive_indices]
-        new_neg = [value * scalar for value in self.negative_indices]
+        if not isinstance(other, (int, float, complex)) and not callable(other):
+            raise TypeError("The scalar must be an integer, float, complex or callable.")
 
         # Return a new Signal object with the scaled lists
         clone = DigitalSignal()
-        clone.positive_indices = new_pos
-        clone.negative_indices = new_neg
+
+        if callable(other):
+            clone.positive_indices = [other(value) for value in self.positive_indices]
+            clone.negative_indices = [other(value) for value in self.negative_indices]
+
+        else:
+            clone.positive_indices = [value * other for value in self.positive_indices]
+            clone.negative_indices = [value * other for value in self.negative_indices]
+
         return clone
 
     def __rmul__(self, scalar):
@@ -267,7 +270,7 @@ class DigitalSignal:
         """
         if not isinstance(other, DigitalSignal):
             raise TypeError("Correlation is only supported between two DigitalSignal objects.")
-        return self @ (~other)
+        return self @ (~(other.complex_conjugate()))
 
     def __eq__(self, other):
         """
@@ -284,64 +287,18 @@ class DigitalSignal:
         for idx in range(max_pos_len+2):
             if self[-idx] != other[-idx]:
                 return False
-
+            
         return True
-    
-    def __iadd__(self, other):
-        """
-        Elementwise addition to the signal
-        """
-        print("WARNING: Elementwise addition/subtraction does not update values outside the range shown when printed.")
-        if not isinstance(other, (int, float)):
-            raise TypeError("Only floats and ints can be elementwise added to DigitalSignals.")
-        
-        n_len = len(self.negative_indices)
-        p_len = len(self.positive_indices)
+       
+    def complex_conjugate(self):
 
-        for idx in range(-n_len, p_len):
-            self[idx] = self[idx] + other
+        new_pos = [n.conjugate() if isinstance(n, complex) else n for n in self.positive_indices]
+        new_neg = [n.conjugate() if isinstance(n, complex) else n for n in self.negative_indices]
 
-        return self
-
-    def __isub__(self, other):
-        """
-        Elementwise subtraction from the signal
-        """
-
-        if not isinstance(other, (int, float)):
-            raise TypeError("Only floats and ints can be elementwise subtracted from DigitalSignals.")
-
-        return self.__iadd__(-other)
-    
-    def __imul__(self, other):
-        """
-        Elementwise multipication with the signal
-        """
-        if not isinstance(other, (int, float)):
-            raise TypeError("Only floats and ints can be elementwise multipled with DigitalSignals.")
-        
-        n_len = len(self.negative_indices)
-        p_len = len(self.positive_indices)
-
-        for idx in range(-n_len, p_len):
-            self[idx] = self[idx] * other
-
-        return self
-
-    def __itruediv__(self, other):
-        """
-        Elementwise division of the signal
-        """
-        if not isinstance(other, (int, float)):
-            raise TypeError("Only floats and ints can be elementwise divide DigitalSignals.")
-        
-        n_len = len(self.negative_indices)
-        p_len = len(self.positive_indices)
-
-        for idx in range(-n_len, p_len):
-            self[idx] = self[idx] / other
-
-        return self
+        clone = DigitalSignal()
+        clone.positive_indices = new_pos
+        clone.negative_indices = new_neg
+        return clone        
 
     def __slice_getitem(self, s):
         """
@@ -367,7 +324,67 @@ class DigitalSignal:
                 stop = -(n_len+1)
 
         return [self[idx] for idx in range(start, stop, step)]
+    
+    def round(self, ndigits=None):
 
+        # Initialize empty lists to store the rounded values
+        new_pos = []
+        new_neg = []
+
+        # Iterate over positive indices and round each element
+        for n in self.positive_indices:
+            if isinstance(n, complex):
+                rounded_value = complex(round(n.real, ndigits), round(n.imag, ndigits))
+                
+                # clean up zero values
+                if rounded_value.imag == 0:
+                    rounded_value = rounded_value.real
+                elif rounded_value.real == 0:
+                    rounded_value = rounded_value.imag
+
+            else:
+                rounded_value = round(n, ndigits)
+            new_pos.append(rounded_value)
+
+        # Iterate over negative indices and round each element
+        for n in self.negative_indices:
+            if isinstance(n, complex):
+                rounded_value = complex(round(n.real, ndigits), round(n.imag, ndigits))
+
+                # clean up zero values
+                if rounded_value.imag == 0:
+                    rounded_value = rounded_value.real
+                elif rounded_value.real == 0:
+                    rounded_value = rounded_value.imag
+                
+            else:
+                rounded_value = round(n, ndigits)
+            new_neg.append(rounded_value)
+
+        clone = DigitalSignal()
+        clone.positive_indices = new_pos
+        clone.negative_indices = new_neg
+        return clone     
+
+def cconj(signal):
+    """
+    A helper function that calls the complex_conjugate method on a DigitalSignal object
+    """
+
+    try:
+        return signal.complex_conjugate()  # Without double underscores
+    except AttributeError:
+        raise AttributeError
+
+
+class E():
+    def __init__(self, comp_const):
+        self.complex_constant = comp_const
+
+    def __call__(self, value):
+        return cmath.exp(self.complex_constant * value)
+
+PI = cmath.pi
 
 class ShiftRegister:
     def __init__(self, length):
