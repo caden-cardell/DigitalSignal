@@ -34,3 +34,11 @@ def test_signal_set_item():
 
     signal[2] = 3
     assert signal[:] ==  [1, 0, 0, 0, 0, 0, 3]
+
+
+def test_signal_time_shift():
+    signal = DS([0, 1, 2, 3, 4, 5])
+
+    signal2 = signal(-2)
+
+    assert signal2[4] == 2
