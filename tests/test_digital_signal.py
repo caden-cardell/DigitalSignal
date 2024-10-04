@@ -50,3 +50,21 @@ def test_signal_add():
     signal3 = signal1 + signal2
 
     assert signal3[:] == [-2, -1, 0, 1, 2]
+
+
+def test_signal_sub():
+    signal1 = DS([-2, -1, [0]])
+    signal2 = DS([[0], 1, 2])
+    signal3 = signal1 - signal2
+
+    assert signal3[:] == [-2, -1, 0, -1, -2]
+
+
+def test_signal_mul():
+    signal = DS([0, 1, 2])
+
+    signal2 = 2 * signal
+    signal3 = signal * 3
+
+    assert signal2[:] == [0, 2, 4]
+    assert signal3[:] == [0, 3, 6]
