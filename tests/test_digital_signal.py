@@ -1,5 +1,5 @@
 import pytest
-from DigitalSignal.digital_signal import DigitalSignal as DS, E, PI, cconj
+from DigitalSignal import DigitalSignal as DS, E, PI, cconj
 
 def test_signal_empty_initialization():
     signal = DS()

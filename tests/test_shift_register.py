@@ -1,6 +1,6 @@
 
 import pytest
-from DigitalSignal.digital_signal import DigitalSignal as DS, ShiftRegister as SR, E, PI
+from DigitalSignal import DigitalSignal as DS, ShiftRegister as SR
 
 def test_shift_register():
 
