@@ -62,9 +62,12 @@
                 <!-- begin terminal window -->
                 <div id="new-terminal">
                     <script type="mpy" src="../DigitalSignal/digital_signal.py"></script>
+                    <script type="mpy" src="../DigitalSignal/shift_register.py"></script>
+                    <script type="mpy" src="../DigitalSignal/helper.py"></script>
                     <script id="python-terminal" type="mpy" terminal>
                     import code
                     DS = DigitalSignal
+                    SR = ShiftRegister
                     d = DS([1])
                     code.interact()
                     </script>

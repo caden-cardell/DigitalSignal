@@ -1,6 +1,5 @@
 import pytest
-from DigitalSignal.digital_signal import DigitalSignal as DS # Assuming you have a class named DigitalSignal
-
+from DigitalSignal import DigitalSignal as DS, E, PI, cconj
 
 def test_signal_empty_initialization():
     signal = DS()
@@ -87,3 +86,31 @@ def test_signal_fold():
     assert signal2[0] == 0
     assert signal2[-1] == 1
     assert signal2[-2] == 2
+
+def test_callable():
+    signal = DS([1, 2, 3, 4])
+    callable_op = lambda a: a * 2
+
+    signal2 = signal * callable_op
+
+    signal3 = DS([2, 4, 6, 8])
+    
+    assert signal2 == signal3
+
+def test_complex():
+    signal = DS([1j, 1, 2+2j, -1j])
+    cc_signal = cconj(signal)
+
+    signal2 = DS([-1j, 1, 2-2j, 1j])
+
+    assert cc_signal == signal2
+
+def test_e_pi_no_rounding():
+    callable_op = E(1j*PI)
+
+    assert callable_op(2) != callable_op(8)  
+
+def test_e_pi_rounding():
+    callable_op = E(1j*PI, ndigits=6)
+
+    assert callable_op(2) == callable_op(8)  
