@@ -1,4 +1,8 @@
-from DigitalSignal import DigitalSignal
+try:
+    from DigitalSignal import DigitalSignal
+except:
+    # this is a hack to allow ShiftRegister to be used in the online REPL
+    pass
 
 class ShiftRegister:
     def __init__(self, length):
