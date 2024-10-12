@@ -378,11 +378,22 @@ def cconj(signal):
 
 
 class E():
-    def __init__(self, comp_const):
-        self.complex_constant = comp_const
+    def __init__(self, complex_const, ndigits=None):
+
+        if isinstance(complex_const, complex) and complex_const.real != 0:
+            raise TypeError("E can only take fully imagineary numbers (e.g. -2j not 3+4j)")
+
+        self.imag_const = complex_const.imag
+        self.ndigits = ndigits
 
     def __call__(self, value):
-        return cmath.exp(self.complex_constant * value)
+
+        z = cmath.cos(self.imag_const * value) + 1j * cmath.sin(self.imag_const * value)
+
+        if self.ndigits is None:
+            return z
+
+        return  complex(round(z.real, self.ndigits), round(z.imag, self.ndigits))
 
 PI = cmath.pi
 
