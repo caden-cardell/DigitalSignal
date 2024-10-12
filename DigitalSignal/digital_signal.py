@@ -209,11 +209,11 @@ class DigitalSignal:
 
         return clone
 
-    def __rmul__(self, scalar):
+    def __rmul__(self, other):
         """
         Support scalar multiplication from the right.
         """
-        return self.__mul__(scalar)
+        return self.__mul__(other)
 
     def __neg__(self):
         """
@@ -372,7 +372,7 @@ def cconj(signal):
     """
 
     try:
-        return signal.complex_conjugate()  # Without double underscores
+        return signal.complex_conjugate() 
     except AttributeError:
         raise AttributeError
 
@@ -409,26 +409,10 @@ class ShiftRegister:
             internal_signal[0] = new_value
 
         # convert 0s to -1s
-        internal_signal *= 2
-        internal_signal -= 1  # only the explicit signal will be altered here
+        internal_signal = 2 * internal_signal
+
+        internal_signal = internal_signal * (lambda a : a - 1) # subtract 1 from all explicit elements in the 
 
         # reverse the explicit signal
         return DigitalSignal(internal_signal[::-1])
-    
-    @classmethod
-    def test(_):
-        """
-        A method to sanity check that no changes to the DigitalSignal class break anything. This will be moved to a test eventually.
-        """
 
-        # generate shift register output
-        reg = ShiftRegister(4)
-        generated_signal = reg(15)
-        known_signal = DigitalSignal([-1, -1, -1, 1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1])
-
-        if known_signal == generated_signal:
-            print("SUCCESS")
-        else:
-            print("FAIL")
-            print(known_signal, "<-- known_signal")
-            print(generated_signal, "<-- generated_signal")
