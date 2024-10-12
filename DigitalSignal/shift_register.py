@@ -1,4 +1,4 @@
-from .digital_signal import DigitalSignal
+from DigitalSignal import DigitalSignal
 
 class ShiftRegister:
     def __init__(self, length):
