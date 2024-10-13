@@ -88,12 +88,12 @@ def test_signal_fold():
     assert signal2[-2] == 2
 
 def test_callable():
-    signal = DS([1, 2, 3, 4])
-    callable_op = lambda a: a * 2
+    signal = DS([1, 1, 1, 1])
+    callable_op = lambda a: a
 
     signal2 = signal * callable_op
 
-    signal3 = DS([2, 4, 6, 8])
+    signal3 = DS([0, 1, 2, 3])
     
     assert signal2 == signal3
 
