@@ -9,16 +9,19 @@ class DigitalSignal:
         # Ensure the zero_index is within the bounds of the data array
         
         if shape is not None:
-            if not isinstance(shape, slice):
-                raise TypeError("shape must be type slice.")
+            if not isinstance(shape, tuple):
+                raise TypeError("shape must be a tuple.")
 
             if not isinstance(data, (int, float, complex)):
                 raise TypeError("If shape is not None then data must be a single scalar.")
             
-            shape.start, shape.stop
+            if len(shape) !=2:
+                raise ValueError("shape must be of length 2.")
 
-            self.positive_indices = [data for _ in range(0, shape.stop)]
-            self.negative_indices = [data for _ in range(shape.start, 0)]  # index order doesn't matter because all elements are the same value
+            start, stop = shape
+
+            self.positive_indices = [data for _ in range(0, stop+1)]
+            self.negative_indices = [data for _ in range(start, 0)]  # index order doesn't matter because all elements are the same value
             
             return
             
@@ -382,8 +385,8 @@ class DigitalSignal:
     
     def shape(self):
         start = -len(self.negative_indices)
-        stop = len(self.positive_indices)
+        stop = len(self.positive_indices)-1
 
-        return slice(start, stop)
+        return (start, stop)
 
 
