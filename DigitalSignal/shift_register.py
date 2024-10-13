@@ -28,8 +28,8 @@ class ShiftRegister:
 
         # convert 0s to -1s
         internal_signal = 2 * internal_signal
-
-        internal_signal = internal_signal * (lambda a : a - 1) # subtract 1 from all explicit elements in the signal
+        ones = DigitalSignal(1, internal_signal.shape())
+        internal_signal = internal_signal - ones
 
         # reverse the explicit signal
         return DigitalSignal(internal_signal[::-1])

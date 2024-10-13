@@ -2,11 +2,26 @@ import cmath
 
 
 class DigitalSignal:
-    def __init__(self, data=[0]):
+    def __init__(self, data=[0], shape=None):
         """
         Initialize the DigitalSignal with data, identifying the zero index by a list element.
         """
         # Ensure the zero_index is within the bounds of the data array
+        
+        if shape is not None:
+            if not isinstance(shape, slice):
+                raise TypeError("shape must be type slice.")
+
+            if not isinstance(data, (int, float, complex)):
+                raise TypeError("If shape is not None then data must be a single scalar.")
+            
+            shape.start, shape.stop
+
+            self.positive_indices = [data for _ in range(0, shape.stop)]
+            self.negative_indices = [data for _ in range(shape.start, 0)]  # index order doesn't matter because all elements are the same value
+            
+            return
+            
         zero_index=0
         for ind, element in enumerate(data):
             if isinstance(element, list):
@@ -23,7 +38,7 @@ class DigitalSignal:
         else:
             if zero_index != 0:
                 raise ValueError("zero_index must be within the range of the data array.")
-            
+        
         # Separate the data into positive and negative indices
         self.positive_indices = data[zero_index:]    # Values at 0 and positive indices
         self.negative_indices = data[:zero_index][::-1]  # Values at negative indices (reversed order)
@@ -364,3 +379,11 @@ class DigitalSignal:
         clone.positive_indices = new_pos
         clone.negative_indices = new_neg
         return clone     
+    
+    def shape(self):
+        start = -len(self.negative_indices)
+        stop = len(self.positive_indices)
+
+        return slice(start, stop)
+
+
