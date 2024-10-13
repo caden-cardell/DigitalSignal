@@ -200,9 +200,8 @@ class DigitalSignal:
         clone = DigitalSignal()
 
         if callable(other):
-            clone.positive_indices = [other(value) for value in self.positive_indices]
-            clone.negative_indices = [other(value) for value in self.negative_indices]
-
+            clone.positive_indices = [value * other(idx) for idx, value in enumerate(self.positive_indices)]
+            clone.negative_indices = [value * other(-(idx+1)) for idx, value in enumerate(self.negative_indices)]
         else:
             clone.positive_indices = [value * other for value in self.positive_indices]
             clone.negative_indices = [value * other for value in self.negative_indices]
