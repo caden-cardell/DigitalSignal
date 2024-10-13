@@ -195,3 +195,12 @@ print(x @ d(2))  # DigitalSignal(1 2 [3] 0 0)
 # these are equivalent operations
 print(x(2) == x @ d(2))  # True
 ```
+
+#TODO:
+shape getting with tuples
+shape setting with tuples
+
+callable multiplication
+complex numbers
+complex conjugation
+rounding
