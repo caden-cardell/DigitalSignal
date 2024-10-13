@@ -357,7 +357,7 @@ class DigitalSignal:
                 if rounded_value.imag == 0:
                     rounded_value = rounded_value.real
                 elif rounded_value.real == 0:
-                    rounded_value = rounded_value.imag
+                    rounded_value = rounded_value.imag * 1j
 
             else:
                 rounded_value = round(n, ndigits)
