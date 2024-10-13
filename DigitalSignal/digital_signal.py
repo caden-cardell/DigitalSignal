@@ -354,9 +354,9 @@ class DigitalSignal:
                 rounded_value = complex(round(n.real, ndigits), round(n.imag, ndigits))
                 
                 # clean up zero values
-                if rounded_value.imag == 0:
+                if rounded_value.imag == 0 or rounded_value.imag == -0:
                     rounded_value = rounded_value.real
-                elif rounded_value.real == 0:
+                elif rounded_value.real == 0 or rounded_value.real == -0:
                     rounded_value = rounded_value.imag * 1j
 
             else:
@@ -369,9 +369,9 @@ class DigitalSignal:
                 rounded_value = complex(round(n.real, ndigits), round(n.imag, ndigits))
 
                 # clean up zero values
-                if rounded_value.imag == 0:
+                if rounded_value.imag == 0 or rounded_value.imag == -0:
                     rounded_value = rounded_value.real
-                elif rounded_value.real == 0:
+                elif rounded_value.real == 0 or rounded_value.real == -0:
                     rounded_value = rounded_value.imag * 1j
                 
             else:
