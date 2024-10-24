@@ -114,3 +114,10 @@ def test_e_pi_rounding():
     callable_op = E(1j*PI, ndigits=6)
 
     assert callable_op(2) == callable_op(8)  
+
+def test_convolution():
+    bc13 = DS([1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1])
+    d = DS([1])
+
+    conv = bc13 @ d
+    assert conv == bc13

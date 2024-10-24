@@ -108,19 +108,19 @@ class DigitalSignal:
         if index >= 0:
             # If the index is non-negative
 
-            while index > len(self.positive_indices):
+            while index >= len(self.positive_indices):
                 self.positive_indices.append(self[len(self.positive_indices)])
 
-            self.positive_indices.append(value)
+            self.positive_indices[index] = value
 
         else:
             # If the index is negative
             index = -index - 1
 
-            while index > len(self.negative_indices):
+            while index >= len(self.negative_indices):
                 self.negative_indices.append(self[-(len(self.negative_indices)+1)])
 
-            self.negative_indices.append(value)
+            self.negative_indices[index] = value
 
     def __call__(self, amount=0):
         """
@@ -257,9 +257,9 @@ class DigitalSignal:
             raise TypeError("Convolution is only supported between two DigitalSignal objects.")
 
         # Determine the maximum lag value
-        neg_n = len(other.negative_indices) + len(self.negative_indices)
-        pos_n = len(self.positive_indices) + len(other.positive_indices)
-        n_range = [i for i in range(-(neg_n), pos_n-1)]
+        neg_n = len(self.negative_indices) + len(other.negative_indices)
+        pos_n = len(self.positive_indices) + len(other.positive_indices) - 2 # minus 2 because the positive indeces also hold the zero index
+        n_range = [i for i in range(-(neg_n), pos_n+1)]
     
         # Initialize a list for storing cross-correlation results
         conv = DigitalSignal()
@@ -267,7 +267,7 @@ class DigitalSignal:
         # Iterate over all possible lags
         for n in n_range:
             sum_conv = 0  # Initialize the cross-correlation sum for this lag
-            
+
             # Compute cross-correlation for each lag by summing over all valid n
             for k in range(-len(self.negative_indices), len(self.positive_indices)):
                 # Values of y[n] and x[n-l] 
