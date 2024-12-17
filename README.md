@@ -168,7 +168,7 @@ print(y)  # DigitalSignal(0 0 0 [0] 1 3 5 3)
 ```
 
 ### Correlation 
-$r_{xx}[n] = x[n] * x[-n]$. Currently only real-valued signals are supported.
+$r_{xx}[n] = x[n] * x^*[-n]$.
 ```python
 x = DS([1, 1, 1, -1, 1])  # Barker Code 5
 print(x)  # DigitalSignal([1] 1 1 -1 1)
